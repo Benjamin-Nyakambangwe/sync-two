@@ -16,8 +16,16 @@ export const powersync = new PowerSyncDatabase({
 });
 
 
-export const setupPowerSync = async () => {
+export const setupPowerSync = async (clientId?: number) => {
   // Uses the backend connector that will be created in the next section
   const connector = new Connector();
-  powersync.connect(connector);
+  
+  // Connect with options including clientId if provided
+  powersync.connect(connector, { 
+    // clientId: clientId, // Will be undefined if not provided
+    // You can also add client parameters here if needed
+    params: {
+      clientUserId: 148
+    }
+  });
 };
